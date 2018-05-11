@@ -6,6 +6,7 @@ use Takeaway\Http\Request;
 use Takeaway\Traits\MapsResponses;
 use Takeaway\Models\Category;
 use Takeaway\Models\Choice;
+use Takeaway\Models\Discount;
 use Takeaway\Models\DeliverCosts;
 use Takeaway\Models\DeliverArea;
 use Takeaway\Models\PaymentMethod;
