@@ -14,6 +14,12 @@ use Takeaway\Http\Requests\GetRestaurantRequest;
  * @property boolean $open Whether or not the restaurant is currently open.
  * @property string $logo URL to the logo of the restaurant.
  * @property boolean $new Whether or not the restaurant is new.
+ * @property boolean $tip Whether or not the restaurant is a tip.
+ * @property boolean $hasDiscounts Whether or not the restaurant has discounts.
+ * @property boolean $foodTracker
+ *  Whether or not the restaurant has a food tracker.
+ * @property string $estimatedDeliveryTime
+ *  Estimated delivery time of the restaurant.
  * @property string $description Description of the restaurant.
  * @property string $slogan Slogan of the restaurant.
  * @property string $street Street where the restaurant is located.

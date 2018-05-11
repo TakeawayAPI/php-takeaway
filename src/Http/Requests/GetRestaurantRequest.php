@@ -50,7 +50,7 @@ class GetRestaurantRequest extends Request
             'op' => '!open',
             'oo.lu' => 'logo',
             'oo.sl' => 'slogan',
-            'oo.rv' => 'grade',
+            'oo.rv' => '#grade',
             'oo.bd' => '#numReviews',
             'oo.ft' => '!foodTracker',
             'ad.st' => 'street',

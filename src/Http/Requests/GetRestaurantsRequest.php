@@ -55,11 +55,17 @@ class GetRestaurantsRequest extends PrefabRequest
                     'op' => '!open',
                     'lo' => 'logo',
                     'new' => '!new',
+                    'tip' => '!tip',
                     'nt' => 'description',
+                    'bd' => '#numReviews',
+                    'ft' => '!foodTracker',
+                    'hd' => '!hasDiscounts',
+                    'est' => 'estimatedDeliveryTime',
                     'ad.st' => 'street',
                     'ad.ci' => 'city',
                     'ad.lt' => '.latitude',
-                    'ad.ln' => '.longitude'
+                    'ad.ln' => '.longitude',
+                    'rv' => '#grade'
                 ]
             ]
         ];
