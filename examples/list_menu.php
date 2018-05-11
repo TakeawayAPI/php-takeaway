@@ -6,15 +6,24 @@
  * `php list_menu.php`.
  */
 
-require_once __DIR__.'../vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
 use Takeaway\Takeaway;
+
+if ($argc < 4) {
+    echo 'Usage: php '.$argv[0].' <postalcode> <lat> <lon>'.PHP_EOL;
+    die(1);
+}
+
+$postalCode = $argv[1];
+$lat = $argv[2];
+$lon = $argv[3];
 
 // Thuisbezorgd is in country 1 (The Netherlands).
 $thuisbezorgd = Takeaway::getCountryByCode(1);
 
 // We find all restaurants at a given postal code, latitude and longitude.
-$restaurants = $thuisbezorgd->getRestaurants('7500', '52', '6');
+$restaurants = $thuisbezorgd->getRestaurants($postalCode, $lat, $lon);
 
 // We then select the first restaurant.
 $restaurant = $restaurants[0];
