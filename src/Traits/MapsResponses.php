@@ -248,11 +248,11 @@ trait MapsResponses
 
             if (is_array($value)) {
                 foreach ($value as $element) {
-                    $result[] = new $class($this->getData($local['mapping'], $element));
+                    $result[] = new $class($this->getData($local['mapping'], $element), $local['extra'] ?? []);
                 }
             }
         } else {
-            $result = new $local['class']($this->getData($local['mapping'], $value));
+            $result = new $local['class']($this->getData($local['mapping'], $value), $local['extra'] ?? []);
         }
 
         return [$local['name'], $result];
@@ -271,6 +271,10 @@ trait MapsResponses
     protected function resolveSimpleArray($value, $local)
     {
         $result = [];
+
+        $local = $local[0];
+
+        $key = $local;
 
         if (preg_match('/^[!#\\.]/', $local)) {
             $key = substr($local, 1);
@@ -300,6 +304,8 @@ trait MapsResponses
     protected function resolveSimple($value, $local)
     {
         $modifier = '';
+
+        $key = $local;
 
         if (preg_match('/^[!#\\.]/', $local)) {
             $key = substr($local, 1);
