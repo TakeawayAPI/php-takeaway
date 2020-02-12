@@ -2,9 +2,6 @@
 
 namespace Takeaway;
 
-use Takeaway\Models\Country;
-use Takeaway\Models\Restaurant;
-use Takeaway\Traits\MakesRequests;
 use Takeaway\Http\Requests\GetCountriesRequest;
 
 class Takeaway
