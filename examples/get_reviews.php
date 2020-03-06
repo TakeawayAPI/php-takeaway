@@ -8,15 +8,33 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
+use Takeaway\Takeaway;
 use Takeaway\Http\Requests\GetReviewsRequest;
 
-if ($argc < 2) {
-    echo 'Usage: php '.$argv[0].' <id>'.PHP_EOL;
+// Parse arguments
+if ($argc < 3) {
+    echo 'Usage: php '.$argv[0].' <countryCode> <id>'.PHP_EOL;
     die(1);
 }
 
-$req = new GetReviewsRequest($argv[1], 1);
+$countryCode = $argv[1];
+$restaurantId = $argv[2];
 
+// Set base URL
+Takeaway::setConfigValue(Takeaway::CFG_BASE_URL, 'https://' . $countryCode . '.citymeal.com/android/android.php');
+
+// Find country by given locale code
+$country = Takeaway::getCountryByLocale($countryCode);
+if (!$country) {
+    echo 'Unknown country: '.$countryCode.PHP_EOL;
+    die(1);
+}
+
+// Update language
+Takeaway::setConfigValue(Takeaway::CFG_LANGUAGE, $country->languages[0]);
+
+// Request reviews for restaurant
+$req = new GetReviewsRequest($restaurantId, 1);
 $reviews = $req->getData();
 
 foreach ($reviews['reviews'] as $review) {
@@ -27,7 +45,7 @@ foreach ($reviews['reviews'] as $review) {
     }
 
     if ($review->sunday) {
-        echo 'This review was placed on a Sunday.'.PHP_EOL;
+        echo '(This review was placed on a Sunday.)'.PHP_EOL;
     }
 
     echo PHP_EOL;

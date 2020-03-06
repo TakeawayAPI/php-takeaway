@@ -25,23 +25,19 @@ class Takeaway
         self::CFG_APP_NAME       => 'Takeaway.com',
     ];
 
-    /**
-     * Configures the TakeAway class.
-     * @param array $config configuration values, key is one of the CFG_* constants, value is the new setting
-     */
     public static function configure($config): void
     {
         static::$configuration = array_merge(static::$configuration, $config);
     }
 
-    /**
-     * Get a configuration value
-     * @param string $name one of the CFG_* constants
-     * @return string configuration value
-     */
-    public static function getConfigValue($name): string
+    public static function getConfigValue($name)
     {
         return static::$configuration[$name] ?? '';
+    }
+
+    public static function setConfigValue($name, $value)
+    {
+        return $configuration[$name] = $value;
     }
 
     public static function getCountries()
@@ -53,9 +49,21 @@ class Takeaway
     {
         $countries = self::getCountries();
 
-        $countries = array_filter($countries, function ($country) use ($countryCode) {
+        $countries = array_values(array_filter($countries, function ($country) use ($countryCode) {
             return $country->countryCode === $countryCode;
-        });
+        }));
+
+        return $countries ?? null;
+    }
+
+    public static function getCountryByLocale($countryLocale)
+    {
+        $countries = self::getCountries();
+
+        $countries = array_values(array_filter($countries, function ($country) use ($countryLocale) {
+            echo $country->locale.' - '.$countryLocale.' --> '.strcasecmp($country->locale, $countryLocale).PHP_EOL;
+            return strcasecmp($country->locale, $countryLocale) === 0;
+        }));
 
         return $countries[0] ?? null;
     }
