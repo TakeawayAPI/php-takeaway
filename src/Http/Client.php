@@ -56,7 +56,7 @@ class Client
     public function request($body)
     {
         try {
-            $response = $this->client->request('POST', Takeaway::BASE_URL, [
+            $response = $this->client->request('POST', Takeaway::getConfigValue(Takeaway::CFG_BASE_URL), [
                 'headers' => [
                     'Content-Type' => 'application/x-www-form-urlencoded;charset=UTF-8',
                 ],

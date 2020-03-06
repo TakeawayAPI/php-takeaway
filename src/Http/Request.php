@@ -56,14 +56,14 @@ class Request
             $body .= '&var'.($index + 1).'='.($value);
         }
 
-        $md5 = md5($md5.Takeaway::PASSWORD);
+        $md5 = md5($md5.Takeaway::getConfigValue(Takeaway::CFG_PASSWORD));
 
         $body = 'var0='.$md5.$body;
 
-        $body .= '&version='.Takeaway::VERSION;
-        $body .= '&systemversion='.Takeaway::SYSTEM_VERSION;
-        $body .= '&appname='.Takeaway::APP_NAME;
-        $body .= '&language='.Takeaway::LANGUAGE;
+        $body .= '&version='.Takeaway::getConfigValue(Takeaway::CFG_VERSION);
+        $body .= '&systemversion='.Takeaway::getConfigValue(Takeaway::CFG_SYSTEM_VERSION);
+        $body .= '&appname='.Takeaway::getConfigValue(Takeaway::CFG_APP_NAME);
+        $body .= '&language='.Takeaway::getConfigValue(Takeaway::CFG_LANGUAGE);
 
         return $body;
     }

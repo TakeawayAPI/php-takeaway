@@ -33,7 +33,7 @@ class Country extends Model
     public function getRestaurants($postalCode, $latitude, $longitude)
     {
         return (new GetRestaurantsRequest(
-            $postalCode, $this->countryCode, $latitude, $longitude, Takeaway::LANGUAGE
+            $postalCode, $this->countryCode, $latitude, $longitude, Takeaway::getConfigValue(Takeaway::CFG_LANGUAGE)
         ))->getData()['restaurants'];
     }
 }
