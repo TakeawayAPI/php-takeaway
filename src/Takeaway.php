@@ -53,7 +53,7 @@ class Takeaway
             return $country->countryCode === $countryCode;
         }));
 
-        return $countries ?? null;
+        return $countries[0] ?? null;
     }
 
     public static function getCountryByLocale($countryLocale)
