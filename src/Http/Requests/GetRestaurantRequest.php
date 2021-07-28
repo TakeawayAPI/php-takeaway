@@ -118,6 +118,7 @@ class GetRestaurantRequest extends Request
                             'id' => 'id',
                             'nm' => 'name',
                             'ds' => 'description',
+                            'pu' => 'image',
                             'ah' => '#orderMethods',
                             'pc' => '.deliveryPrice',
                             'tc' => '.pickupPrice',
